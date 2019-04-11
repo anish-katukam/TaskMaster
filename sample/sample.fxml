@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -9,14 +8,13 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane nodeOrientation="LEFT_TO_RIGHT" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -32,8 +30,11 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="49.0" />
+      <RowConstraints maxHeight="127.0" minHeight="10.0" prefHeight="45.0" />
+      <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="50.0" />
+      <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
@@ -43,6 +44,8 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints maxHeight="9.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="308.0" minHeight="299.0" prefHeight="308.0" />
       <RowConstraints />
       <RowConstraints />
    </rowConstraints>
@@ -66,31 +69,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane dividerPositions="0.7491349480968859" prefHeight="126.0" prefWidth="580.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
-        <items>
-            <SplitPane dividerPositions="0.41139240506329117" orientation="VERTICAL" prefHeight="93.0" prefWidth="439.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                     <children>
-                        <JFXTextArea layoutX="3.0" layoutY="-2.0" prefHeight="48.0" prefWidth="412.0" promptText="Write A Description" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="61.0" prefWidth="430.0">
-                     <children>
-                        <JFXTextField layoutX="34.0" layoutY="23.0" minWidth="10.0" prefHeight="25.0" promptText="Priority?" />
-                        <JFXDatePicker layoutX="186.0" layoutY="23.0" promptText="Due?" />
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="97.0">
-               <children>
-                  <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" text="Add Task" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-      <ScrollPane prefHeight="308.0" prefWidth="580.0" GridPane.columnIndex="2" GridPane.rowIndex="21">
+      <ScrollPane prefHeight="308.0" prefWidth="580.0" GridPane.columnIndex="2" GridPane.rowIndex="24">
         <content>
             <GridPane alignment="CENTER" prefHeight="182.0" prefWidth="555.0">
                <columnConstraints>
@@ -131,10 +110,17 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label text="Task List" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+      <Label text="Task List" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <JFXTextArea prefHeight="25.0" prefWidth="580.0" promptText="Write A Description" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="34.0" prefWidth="580.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+         <children>
+            <JFXTextField layoutX="27.0" layoutY="2.0" minWidth="10.0" prefHeight="25.0" promptText="Priority?" />
+            <JFXDatePicker layoutX="182.0" layoutY="2.0" promptText="Due?" />
+         </children>
+      </AnchorPane>
    </children>
 </GridPane>
