@@ -19,7 +19,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="771.0"
+          xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="srcmain.Controller">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints maxWidth="381.0" minWidth="231.0" percentWidth="100.0" prefWidth="231.0" />
