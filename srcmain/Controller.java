@@ -18,28 +18,34 @@ import javafx.scene.control.ListView;
 public class Controller {
 
     @FXML
-    private JFXTextArea descript = new JFXTextArea();
+    JFXTextArea descript = new JFXTextArea();
 
     @FXML
-    private JFXTextField prior = new JFXTextField();
+    JFXTextField prior = new JFXTextField();
 
     @FXML
-    private JFXDatePicker due = new JFXDatePicker();
+    JFXDatePicker due = new JFXDatePicker();
 
     @FXML
-    ListView<Task> display;
+    ListView<Task> display = new ListView<Task>();
 
     ObservableList<Task> list = FXCollections.observableArrayList();
 
     @FXML
-    public void addTask(ActionEvent event) {
+    private void addTask(ActionEvent event) {
         String description = descript.getText();
         String priority = prior.getText();
+        int priorityNum = Integer.parseInt(priority);
         LocalDate dueDate = due.getValue();
-
-        //just a test, change the the parameters
-        list.add(new Task("hello", 0, dueDate, 0));
-
+        list.add(new Task(description, priorityNum, dueDate, 0));
         display.setItems(list);
+        refresh();
     }
+
+    private void refresh() {
+        descript.setText("");
+        prior.setText("");
+        due.setValue(null);
+    }
+
 }
