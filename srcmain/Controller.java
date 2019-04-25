@@ -37,6 +37,7 @@ public class Controller {
         String priority = prior.getText();
         LocalDate dueDate = due.getValue();
 
+        //just a test, change the the parameters
         list.add(new Task("hello", 0, dueDate, 0));
 
         display.setItems(list);
