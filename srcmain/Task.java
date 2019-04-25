@@ -48,8 +48,11 @@ public class Task {
         this.status = status;
     }
 
-    public String toString() {
-        return this.getDescription() + " " + this.getPriority() + " " + this.getDueDate() + " " + this.getStatus();
+     public String toString() {
+        return "Description: " + this.getDescription() + " " +
+               "Priority: " + this.getPriority() + " " +
+               "Due: " + this.getDueDate() + " " +
+               "Status: " + this.getStatus();
     }
 
     //TODO: Implement Changelog<ChangeTask>
