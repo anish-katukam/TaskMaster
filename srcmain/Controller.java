@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -57,9 +57,21 @@ public class Controller {
     @FXML
     private JFXButton contextRightButton = new JFXButton();
 
+    @FXML
+    private JFXButton newDescriptionButton = new JFXButton();
+
+    @FXML
+    private JFXTextArea newDescriptionEntry = new JFXTextArea();
+
     ObservableList<Task> list = FXCollections.observableArrayList();
 
+    boolean bypassValidation = false;
+
     public void initialize() {
+
+        newDescriptionButton.getStyleClass().add("add-button-raised");
+        newDescriptionButton.setDisable(true);
+
         addTaskButton.setDisable(true);
         addTaskButton.getStyleClass().add("add-button-raised");
         updateTaskButton.getStyleClass().add("update-button-raised");
@@ -87,8 +99,17 @@ public class Controller {
     }
 
     @FXML
+    private void attemptDescriptionValidation() {
+        if (!newDescriptionEntry.getText().equals("")) {
+            newDescriptionButton.setDisable(false);
+        } else {
+            addTaskButton.setDisable(true);
+        }
+    }
+
+    @FXML
     private void attemptInputValidation() {
-        if (!descriptionEntry.getText().equals("") && priorityEntry.getText().matches("[0-9]+") && dueDateEntry.getValue() != null) {
+        if ((!descriptionEntry.getText().equals("") && priorityEntry.getText().matches("[0-9]+") && dueDateEntry.getValue() != null) || bypassValidation) {
             addTaskButton.setDisable(false);
         } else {
             addTaskButton.setDisable(true);
@@ -172,15 +193,26 @@ public class Controller {
         contextLeftButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/srcmain/popup.fxml"));
-                    Stage stage = new Stage();
-                    stage.setTitle("My New Stage Title");
-                    stage.setScene(new Scene(root, 200, 200));
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                addTaskButton.setText("Set New Description");
+                addTaskButton.setDisable(false);
+                bypassValidation = true;
+                addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (!descriptionEntry.getText().equals("")) {
+                            display.getSelectionModel().getSelectedItem().setDescription(descriptionEntry.getText());
+                            display.refresh();
+                            bypassValidation = false;
+                            addTaskButton.setText("Add Task");
+                            addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    addTask();
+                                }
+                            });
+                        }
+                    }
+                });
                 display.refresh();
                 deactivateContextButtons();
             }
@@ -189,7 +221,26 @@ public class Controller {
         contextMiddleButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                display.getSelectionModel().getSelectedItem().setStatus(1);
+                addTaskButton.setText("Set New Priority");
+                addTaskButton.setDisable(false);
+                bypassValidation = true;
+                addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (priorityEntry.getText().matches("[0-9]+")) {
+                            display.getSelectionModel().getSelectedItem().setPriority(Integer.parseInt(priorityEntry.getText()));
+                            display.refresh();
+                            bypassValidation = false;
+                            addTaskButton.setText("Add Task");
+                            addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    addTask();
+                                }
+                            });
+                        }
+                    }
+                });
                 display.refresh();
                 deactivateContextButtons();
             }
@@ -198,7 +249,26 @@ public class Controller {
         contextRightButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                display.getSelectionModel().getSelectedItem().setStatus(2);
+                addTaskButton.setText("Set New Due Date");
+                addTaskButton.setDisable(false);
+                bypassValidation = true;
+                addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (dueDateEntry.getValue() != null) {
+                            display.getSelectionModel().getSelectedItem().setDueDate(dueDateEntry.getValue());
+                            display.refresh();
+                            bypassValidation = false;
+                            addTaskButton.setText("Add Task");
+                            addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    addTask();
+                                }
+                            });
+                        }
+                    }
+                });
                 display.refresh();
                 deactivateContextButtons();
             }
@@ -213,6 +283,21 @@ public class Controller {
         //#TODO: ADD DELETE EVENT
     }
 
+    public void saveFile() throws IOException {
+        try {
+            File fileName = new File("TaskMaster-List.txt");
+            FileWriter fw = new FileWriter(fileName);
+            Writer output = new BufferedWriter(fw);
+
+            for (int i = 0; i < list.size(); i++) {
+                output.write(list.get(i).toString() + "\n");
+            }
+            output.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
 
     private void refresh() {
         descriptionEntry.setText("");
