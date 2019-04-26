@@ -10,10 +10,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/srcmain/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/srcmain/MainWindow.fxml"));
+        Scene primaryScene = new Scene(root, 600, 708);
+        primaryScene.getStylesheets().add(getClass().getResource("styling.css").toExternalForm());
         primaryStage.setTitle("Task Master");
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(primaryScene);
         primaryStage.show();
+
     }
 
 

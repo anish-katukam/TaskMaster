@@ -1,0 +1,55 @@
+.add-button-raised {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #29b6f6;
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}
+
+.edit-button-raised {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #29b6f6;
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}
+
+.delete-button-raised {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #ef5350;
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}
+
+.update-button-raised {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #66bb6a;
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}
+
+.context-button-raised {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #7e57c2;
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}
+
+.disable-button-raised {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-background-color: #f8f8f8;
+    -fx-pref-width: 200;
+    -fx-text-fill: #a2bbd8;
+}
+
+
+

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXScrollPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="root" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="700.0"
+          xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="srcmain.Controller">
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints maxWidth="381.0" minWidth="231.0" percentWidth="100.0" prefWidth="231.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+        <RowConstraints maxHeight="60.0" minHeight="5.0" prefHeight="35.0" />
+        <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" />
+        <RowConstraints maxHeight="216.0" minHeight="0.0" prefHeight="157.0" />
+        <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="82.0" />
+        <RowConstraints maxHeight="165.0" minHeight="0.0" prefHeight="41.0" />
+        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="243.0" />
+        <RowConstraints maxHeight="308.0" minHeight="0.0" prefHeight="100.0"/>
+        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+    </rowConstraints>
+    <children>
+        <MenuBar prefHeight="25.0" prefWidth="523.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Open" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label text="Add A Task" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label prefHeight="33.0" prefWidth="83.0" text="Task List" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <JFXScrollPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <children>
+                <SplitPane orientation="VERTICAL">
+                    <items>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <JFXListView fx:id="display" prefHeight="200.0"
+                                             prefWidth="700.0"/> <!--TODO: FIX ME DAMN IT-->
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </JFXScrollPane>
+        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <children>
+                <JFXTextArea fx:id="descriptionEntry" onKeyPressed="#attemptInputValidation"
+                             onKeyReleased="#attemptInputValidation" prefHeight="55.0" prefWidth="771.0"
+                             promptText="Write A Description"/>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="58.0" prefWidth="580.0">
+                    <children>
+                        <JFXTextField fx:id="priorityEntry" layoutY="15.0" minWidth="10.0"
+                                      onKeyPressed="#attemptInputValidation" onKeyReleased="#attemptInputValidation"
+                                      prefHeight="25.0" prefWidth="90.0" promptText="Priority?"/>
+                        <JFXDatePicker fx:id="dueDateEntry" layoutX="152.0" layoutY="15.0"
+                                       onAction="#attemptInputValidation" prefHeight="25.0" prefWidth="90.0"
+                                       promptText="Due Date:"/>
+                    </children>
+                </AnchorPane>
+                <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="28.0" prefWidth="771.0">
+                    <JFXButton fx:id="addTaskButton" mnemonicParsing="false" onAction="#addTask" text="Add Task"
+                               textAlignment="CENTER"/>
+                </ToolBar>
+            </children>
+        </VBox>
+        <JFXToolbar prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <center>
+                <JFXButton fx:id="updateTaskButton" mnemonicParsing="false" onAction="#updateTask"
+                           text="Update Selected" BorderPane.alignment="CENTER"/>
+            </center>
+            <left>
+                <JFXButton fx:id="editTaskButton" mnemonicParsing="false" onAction="#editTask" text="Edit Selected"
+                           BorderPane.alignment="CENTER"/>
+            </left>
+            <right>
+                <JFXButton fx:id="deleteTaskButton" mnemonicParsing="false" onAction="#deleteTask"
+                           text="Delete Selected" BorderPane.alignment="CENTER"/>
+            </right>
+        </JFXToolbar>
+        <JFXToolbar layoutX="10.0" layoutY="618.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
+                    GridPane.rowIndex="4">
+            <center>
+                <JFXButton fx:id="contextMiddleButton" mnemonicParsing="false" text="Nothing Yet"
+                           BorderPane.alignment="CENTER"/>
+            </center>
+            <left>
+                <JFXButton fx:id="contextLeftButton" mnemonicParsing="false" text="Nothing Yet"
+                           BorderPane.alignment="CENTER"/>
+            </left>
+            <right>
+                <JFXButton fx:id="contextRightButton" mnemonicParsing="false" text="Nothing Yet"
+                           BorderPane.alignment="CENTER"/>
+            </right>
+            <bottom>
+                <SplitMenuButton mnemonicParsing="false" text="Sort By..." BorderPane.alignment="CENTER">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Description"/>
+                        <MenuItem mnemonicParsing="false" text="Priority"/>
+                        <MenuItem mnemonicParsing="false" text="Due Date"/>
+                        <MenuItem mnemonicParsing="false" text="Status"/>
+                    </items>
+                </SplitMenuButton>
+            </bottom>
+        </JFXToolbar>
+    </children>
+</GridPane>
